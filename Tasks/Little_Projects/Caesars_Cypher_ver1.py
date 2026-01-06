@@ -13,16 +13,7 @@
 """
 
 import sys
-import time
 
-def working_time(fn: function) -> function:
-    def enc_func(*args, **kwargs):
-        start_time = time.time()
-        result = fn(*args, **kwargs)
-        end_time = time.time()
-        print(f"Время выполнения {fn.__name__}: ", end_time - start_time)
-        return result
-    return enc_func
 
 def main():
 
@@ -75,7 +66,6 @@ def get_correct_reply(funct: function, dictionary=None) -> str:
             print(wrong_message)
     return reply
 
-@working_time
 def encoder(text: str, move: int, dictionary: dict) -> str:
     new_text = ""
     up_start_pos = dictionary.get("us_pos")

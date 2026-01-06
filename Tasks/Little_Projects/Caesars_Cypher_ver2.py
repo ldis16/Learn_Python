@@ -11,7 +11,7 @@
 
 Примечание 3. Сохраните регистр символов. Например, текст: "Умом Россию не понять" при сдвиге на одну позицию вправо будет преобразован в: "Фнпн Спттйя ож рпоауэ".
 """
-from Modules import working_time
+
 
 def main():
 
@@ -39,10 +39,12 @@ def main():
     )
     step = int(ask_and_wait_for_reply_from_list(question_3))
 
-    switch = {"enc" : decoding(text, language_pack, -step), 
-              "dec" : decoding(text, language_pack, step), 
-              "b_dec" : "\n".join(brute_decoding(text, language_pack))}
-    
+    switch = {
+        "enc": decoding(text, language_pack, -step),
+        "dec": decoding(text, language_pack, step),
+        "b_dec": "\n".join(brute_decoding(text, language_pack)),
+    }
+
     result = switch.get(opperation)
     print(result)
 
@@ -52,7 +54,8 @@ def brute_decoding(text: str, language_pack: str) -> list:
     for i in range(1, len(language_pack)):
         result.append(decoding(text, language_pack, i) + "  | step: " + str(i))
     return result
-@working_time
+
+
 def decoding(text: str, language_pack: str, step: int) -> str:
     u_lang = language_pack.upper()
     l_lang = language_pack.lower()
@@ -77,7 +80,7 @@ def ask_and_wait_for_reply_from_list(question: str, correct_replies=None) -> str
     reply = ""
     while not correct_reply:
         reply = input(question + "\n")
-        if correct_replies == None:
+        if correct_replies is None:
             correct_reply = reply.isdigit()
         else:
             correct_reply = reply.lower() in correct_replies
